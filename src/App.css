@@ -1,38 +1,24 @@
-.App {
-  text-align: center;
+@import url("https://uilight.netlify.app/main.css");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
+@import url("./components/Navbar/Navbar.css");
+@import url("./components//Categories/Categories.css");
+
+:root {
+  --background-color: #fafafa;
+  --primary-color: #ff6525;
+  --text-color-primary: #363030;
+  --accent-color: #d2d2d2;
+  --container-border-color: #707070;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  overflow-x: hidden;
+  background-color: var(--background-color);
 }
