@@ -1,0 +1,21 @@
+.hotel-name-address {
+  font-size: 1.5rem;
+}
+
+.hotel-images-container {
+  height: 400px;
+}
+
+.primary-img-container {
+  height: 400px;
+}
+
+.hotel-img {
+  width: 20vw;
+  height: 49%;
+}
+
+.primary-img {
+  width: 40vw;
+  height: 100%;
+}

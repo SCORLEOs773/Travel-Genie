@@ -11,7 +11,7 @@ const initalState = {
 const CategoryContext = createContext();
 
 const CategoryProvider = ({children}) => {
-    
+
     const [{ hotelCategory, isDestinationModalOpen, checkInDate, checkOutDate }, categoryDispatch] = useReducer(categoryReducer, initalState);
 
     return (
