@@ -1,18 +1,16 @@
 import { Navbar, Categories, TravelCard } from "../../components";
 import { categories, hotels } from "../../db/";
-import { useCategory } from "../../components/context/category-context";
+import { useCategory } from "../../context/category-context";
 import "./Home.css";
 
 export const Home = () => {
 
-    const { hotelCategory } = useCategory();
+    const { hotelCategory, isDestinationModalOpen } = useCategory();
 
-    const handleScroll = e => {
-        console.log(e.target.scrollHeight)
-      };
+    console.log({isDestinationModalOpen})
 
     return (
-        <div onScroll={handleScroll}>
+        <div>
             <Navbar />
             <Categories categories={categories}/>
             <section className="hotels d-flex align-center wrap gap-xxl">

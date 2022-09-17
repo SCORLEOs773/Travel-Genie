@@ -1,0 +1,37 @@
+.destination-container {
+    margin-top: 6rem; 
+    position: fixed;
+    z-index: 1;
+    background-color: var(--accent-color);
+    transform: translate(40%);
+}
+
+.input:focus {
+    outline: none;
+}
+
+.search-dest {
+    font-size: 0.875rem;
+    padding: 0.5rem;
+    border: none;
+    background-color: var(--accent-color);
+}
+
+.search-con {
+    font-size: 0.875rem;
+    padding: 1.25rem 0.5rem;
+    border: none;
+    background-color: var(--primary-color);
+    height: 100%;
+}
+
+.search {
+    background-color: var(--primary-color);
+}
+
+.label {
+    display: block;
+    color: var(--text-color-primary);
+    padding: 8px 0 0 8px;
+    font-size: .875rem;
+}
