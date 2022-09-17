@@ -2,7 +2,7 @@ import "./HostAndHotelDetails.css";
 
 export const HostAndHotelDetails = ({singleHotel}) => {
 
-    const { numberOfBathrooms, numberOfBeds, numberOfguest, ameneties } = singleHotel;
+    const { numberOfBathrooms, numberOfBeds, numberOfguest } = singleHotel;
 
     return (
         <div className="hotel-details-container">
