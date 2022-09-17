@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { categoryReducer } from "../../reducer/category-reducer";
+import { categoryReducer } from "../reducer/category-reducer";
 
 const initalState = {
     hotelCategory: "National Parks"

@@ -1,6 +1,6 @@
 import { Navbar, Categories, TravelCard } from "../../components";
 import { categories, hotels } from "../../db/";
-import { useCategory } from "../../components/context/category-context";
+import { useCategory } from "../../context/category-context";
 import "./Home.css";
 
 export const Home = () => {
