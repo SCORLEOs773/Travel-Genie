@@ -1,5 +1,4 @@
 import DatePicker from "react-datepicker";
-import { useState } from "react";
 import "./DateSelector.css";
 import { useCategory } from "../../context/category-context";
 
