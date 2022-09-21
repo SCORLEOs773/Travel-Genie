@@ -7,7 +7,6 @@ import "./Home.css";
 export const Home = () => {
 
     const { hotelCategory, categoryDispatch, isDestinationModalOpen } = useCategory();
-    console.log("from home", { isDestinationModalOpen })
 
     const handleScroll = useCallback(() => {
         if (window.scrollY > 30 && !isDestinationModalOpen) {
@@ -15,13 +14,13 @@ export const Home = () => {
                 type: "CHANGE_DESTINATION_MODAL_STATUS"
             })
         }
-    }, [])
+    }, [isDestinationModalOpen])
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () =>
             window.removeEventListener("scroll", handleScroll);
-    }, [handleScroll])
+    }, [])
 
 
 

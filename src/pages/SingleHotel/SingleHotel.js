@@ -18,17 +18,16 @@ export const SingleHotel = () => {
                     type: "CHANGE_DESTINATION_MODAL_STATUS"
                 })
             }
-        }, []
+        }, [isDestinationModalOpen]
     )
 
     useEffect(() => {   
         window.addEventListener("scroll", handleScroll);
         return () => 
            window.removeEventListener("scroll", handleScroll); 
-      }, [handleScroll])
+      }, [])
    
     const singleHotel = hotels.categories[hotelCategory].find(hotel => hotel.id === hotelId);
-    console.log({singleHotel});
 
     return (
         <Fragment>
