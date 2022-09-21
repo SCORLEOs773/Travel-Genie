@@ -1,5 +1,5 @@
-export const categoryReducer = (state, {type, payload}) => {
-    switch (type){
+export const categoryReducer = (state, { type, payload }) => {
+    switch (type) {
         case "CATEGORY":
             return {
                 ...state,
@@ -11,16 +11,51 @@ export const categoryReducer = (state, {type, payload}) => {
                 ...state,
                 isDestinationModalOpen: !state.isDestinationModalOpen
             }
+
+        case "CHANGE_DESTINATION_MODAL_STATUS":
+            return {
+                ...state,
+                isDestinationModalOpen: false
+            }
+
+        case "DESTINATION":
+            return {
+                ...state,
+                destination: payload
+            }
+
         case "CHECK_IN":
             return {
                 ...state,
-                checkInDate: payload
+                checkInDate: payload,
+                checkOutDate: state.checkOutDate && state.checkOutDate.getDate() <= payload.getDate() ? "" : state.checkOutDate
             }
+
         case "CHECK_OUT":
             return {
                 ...state,
-                checkOutDate: payload
+                checkOutDate: state.checkInDate && state.checkInDate.getDate() >= payload.getDate() ? "" : payload,
+                checkInDate: state.checkInDate && state.checkInDate.getDate() >= payload.getDate() ? payload : state.checkInDate
             }
+
+        case "GUEST_COUNT":
+            return {
+                ...state,
+                noOfGuests: payload
+            }
+        
+        case "DATE_FOCUS":
+            return {
+                ...state,
+                isSearchResultOpen: false
+            }
+        
+        case "SHOW_SEARCH_RESULT":
+            return {
+                ...state,
+                isSearchResultOpen: true
+            }
+            
         default:
             return state
     }
