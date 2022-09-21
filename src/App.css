@@ -10,6 +10,7 @@
   --text-color-primary: #363030;
   --accent-color: #d2d2d2;
   --container-border-color: #707070;
+  --overlay: rgba(0, 0, 0, .3);
 }
 
 * {

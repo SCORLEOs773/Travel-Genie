@@ -67,3 +67,11 @@
     background-color: var(--accent-color);
     border-radius: 0 4px 4px 0;
 }
+
+.gap-96px {
+    gap: 6rem;
+}
+
+.opacity-50 {
+    opacity: .5;
+}
