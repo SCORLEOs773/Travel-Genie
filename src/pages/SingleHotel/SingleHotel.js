@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useCallback, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { hotels } from "../../db/hotels";
 import { useCategory } from "../../context/category-context";
@@ -11,13 +11,15 @@ export const SingleHotel = () => {
     const { hotelId } = useParams();
     const { hotelCategory, categoryDispatch, isDestinationModalOpen } = useCategory();
 
-    const handleScroll = () => {
-        if (window.scrollY > 30 && !isDestinationModalOpen){
-            categoryDispatch({
-                type: "CHANGE_DESTINATION_MODAL_STATUS"
-            })
-        }
-    }
+    const handleScroll = useCallback(
+        () => {
+            if (window.scrollY > 30 && !isDestinationModalOpen){
+                categoryDispatch({
+                    type: "CHANGE_DESTINATION_MODAL_STATUS"
+                })
+            }
+        }, []
+    )
 
     useEffect(() => {   
         window.addEventListener("scroll", handleScroll);

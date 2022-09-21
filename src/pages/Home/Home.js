@@ -1,6 +1,6 @@
 import { Navbar, Categories, TravelCard } from "../../components";
 import { categories, hotels } from "../../db/";
-import { Fragment, useEffect } from "react";
+import { Fragment, useCallback, useEffect } from "react";
 import { useCategory } from "../../context/category-context";
 import "./Home.css";
 
@@ -9,13 +9,13 @@ export const Home = () => {
     const { hotelCategory, categoryDispatch, isDestinationModalOpen } = useCategory();
     console.log("from home", { isDestinationModalOpen })
 
-    const handleScroll = () => {
+    const handleScroll = useCallback(() => {
         if (window.scrollY > 30 && !isDestinationModalOpen) {
             categoryDispatch({
                 type: "CHANGE_DESTINATION_MODAL_STATUS"
             })
         }
-    }
+    }, [])
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
