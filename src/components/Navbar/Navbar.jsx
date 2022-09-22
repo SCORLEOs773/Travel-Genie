@@ -1,9 +1,12 @@
-import "./Navbar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { useCategory } from "../../context/category-context";
 import { SearchStayWithDate } from "../index";
+import "./Navbar.css";
+import { useAuth } from "../../context";
 
 export const Navbar = ({route}) => {
+
+    const { authDispatch } = useAuth();
 
     const { categoryDispatch, isDestinationModalOpen, destination, checkInDate, checkOutDate, noOfGuests } = useCategory();
     console.log("from navbar -", {isDestinationModalOpen})
@@ -14,7 +17,11 @@ export const Navbar = ({route}) => {
         })
     }
 
-    
+    const handleNavClick = () => {
+        authDispatch({
+            type: "SHOW_AUTH_MODAL"
+        })
+    }
 
     return (
         <header className="heading d-flex align-center gutter-0">
@@ -28,7 +35,7 @@ export const Navbar = ({route}) => {
                         <span className="border-right-1px"></span>
                         <span className="form-option">{checkInDate && checkOutDate ? `${checkInDate.toLocaleDateString("en-US", { day: "numeric", month: "short"})} - ${checkOutDate.toLocaleDateString("en-US", { day: "numeric", month: "short"})}` : "Any week"} </span>
                         <span className="border-right-1px"></span>
-                        <span className="form-option add-guest">{noOfGuests || "Add Guest"}</span>
+                        <span className="form-option add-guest">{noOfGuests > 0 ? `${noOfGuests} guests` : "Add Guests"}</span>
                         <span className="search material-icons-outlined cursor-pointer">
                             search
                         </span>
@@ -43,7 +50,7 @@ export const Navbar = ({route}) => {
                 ) : (<SearchStayWithDate />)
             }
 
-            <nav className="nav d-flex align-center cursor-pointer">
+            <nav className="nav d-flex align-center cursor-pointer" onClick={handleNavClick}>
                 <span class="material-icons-outlined profile-option menu">
                     menu
                 </span>

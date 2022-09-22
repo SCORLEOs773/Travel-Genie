@@ -1,0 +1,70 @@
+.auth-container {
+    width: 100%;
+    padding: 1rem;
+}
+
+.auth-label {
+    color: var(--text-color-primary);
+    opacity: .8;
+}
+
+.asterisk {
+    color: var(--primary-color);
+}
+
+.auth-input {
+    border: none;
+    border-bottom: 1px solid var(--accent-color);
+    color: var(--text-color-primary);
+    font-size: 1rem;
+    padding: 8px 0;
+    opacity: .6;
+}
+
+.lb-in-container {
+    padding: 1rem 0;
+}
+
+.auth-input:focus {
+    outline: none;
+    opacity: 1;
+}
+
+.button.btn-verify {
+    width: 100%;
+    font-size: 1.5rem;
+    padding: .875rem 0;
+    font-weight: normal;
+    margin: 1rem 0;
+}
+
+.hr-line {
+    border-top: 1px solid var(--accent-color);
+    width: 50%;
+}
+
+.cta {
+    padding: 1rem 0;
+}
+
+.button.btn-gmail {
+    font-weight: normal;
+    color: var(--accent-color);
+    width: 100%;
+    border-color: var(--accent-color);
+    padding: 1rem;
+    margin-bottom: 4rem;
+}
+
+.button.btn-outline-primary {
+    width: 100%;
+    padding: 1rem;
+    font-weight: normal;
+    margin-bottom: 1rem;
+}
+
+.button.btn-gmail:hover,
+.button.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}

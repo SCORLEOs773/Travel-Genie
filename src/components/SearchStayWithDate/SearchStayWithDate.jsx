@@ -66,7 +66,7 @@ export const SearchStayWithDate = () => {
                     <DateSelector placeholder="Add dates" checkType="out" />
                 </div>
                 <div className="guest loc-container">
-                    <label className="label">Who</label>
+                    <label className="label">No. of Guests</label>
                     <input className="search-dest input" type="number" placeholder="Add guests" value={noOfGuests} onChange={handleGuestChange} />
                 </div>
                 <div className="search-con d-flex align-center cursor" onClick={handleSearchClick}>
@@ -76,16 +76,11 @@ export const SearchStayWithDate = () => {
                     Search
                 </div>
             </div>
-            {
-                isSearchResultOpen && (
-                    <div className="search-result-container">
-                        {
-                            filteredSearchResult && filteredSearchResult.length > 0 && filteredSearchResult.map(({ address, city, state }) => <p onClick={() => handleSearchResultClick(address)} className="p cursor-pointer">{address}, {city}</p>)
-                        }
-                    </div>
-                )
-            }
-
+            <div className="search-result-container">
+                {
+                    isSearchResultOpen && filteredSearchResult && filteredSearchResult.length > 0 && filteredSearchResult.map(({ address, city, state }) => <p onClick={() => handleSearchResultClick(address)} className="p cursor-pointer">{address}, {city}</p>)
+                }
+            </div>
         </div>
     )
 }

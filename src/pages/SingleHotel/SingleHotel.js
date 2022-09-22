@@ -1,12 +1,15 @@
 import { Fragment, useCallback, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { hotels } from "../../db/hotels";
-import { useCategory } from "../../context/category-context";
+import { useCategory, useAuth } from "../../context";
+import { AuthModal } from "../../components";
 
 import { Navbar, FinalPrice, HostAndHotelDetails, HotelImages } from "../../components";
 import "./SingleHotel.css";
 
 export const SingleHotel = () => {
+
+    const { isAuthModalOpen } = useAuth();
 
     const { hotelId } = useParams();
     const { hotelCategory, categoryDispatch, isDestinationModalOpen } = useCategory();
@@ -39,6 +42,10 @@ export const SingleHotel = () => {
                     <FinalPrice singleHotel={singleHotel} />
                 </div>
             </main>
+            {
+                isAuthModalOpen &&
+                    <AuthModal />
+            }
         </Fragment>
     )
 }

@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
 @import url("./components/Navbar/Navbar.css");
 @import url("./components//Categories/Categories.css");
+ 
 
 :root {
   --background-color: #fafafa;

@@ -1,10 +1,12 @@
-import { Navbar, Categories, TravelCard } from "../../components";
+import { Navbar, Categories, TravelCard, AuthModal } from "../../components";
 import { categories, hotels } from "../../db/";
 import { Fragment, useCallback, useEffect } from "react";
-import { useCategory } from "../../context/category-context";
+import { useCategory, useAuth } from "../../context";
 import "./Home.css";
 
 export const Home = () => {
+
+    const { isAuthModalOpen } = useAuth();
 
     const { hotelCategory, categoryDispatch, isDestinationModalOpen } = useCategory();
 
@@ -26,13 +28,20 @@ export const Home = () => {
 
     return (
         <Fragment>
-            <Navbar route="home" />
-            <Categories categories={categories} />
-            <section className="hotels d-flex align-center wrap gap-xxl">
-                {
-                    hotels.categories[hotelCategory]?.map(hotel => <TravelCard key={hotel.id} hotel={hotel} />)
-                }
-            </section>
+            <div className="home-container">
+                <Navbar route="home" />
+                <Categories categories={categories} />
+                <section className="hotels d-flex align-center wrap gap-xxl">
+                    {
+                        hotels.categories[hotelCategory]?.map(hotel => <TravelCard key={hotel.id} hotel={hotel} />)
+                    }
+                </section>
+            </div>
+            {
+                isAuthModalOpen &&
+                    <AuthModal />
+            }
         </Fragment>
+
     )
 }
