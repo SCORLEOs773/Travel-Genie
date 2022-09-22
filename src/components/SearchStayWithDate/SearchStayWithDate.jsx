@@ -7,7 +7,6 @@ import { hotels } from "../../db";
 export const SearchStayWithDate = () => {
 
     const { categoryDispatch, noOfGuests, destination, hotelCategory, isSearchResultOpen } = useCategory();
-    console.log({ isSearchResultOpen })
 
     const navigate = useNavigate();
 
@@ -48,7 +47,6 @@ export const SearchStayWithDate = () => {
     }
 
     const filteredSearchResult = hotels.categories[hotelCategory].filter(({ address, city, state, country }) => address.toLowerCase().includes(destination.toLowerCase()) || state.toLowerCase().includes(destination.toLowerCase()) || city.toLowerCase().includes(destination.toLowerCase()) || country.toLowerCase().includes(destination.toLowerCase()));
-    console.log({ filteredSearchResult });
 
     return (
         <div className="destination-container">
