@@ -8,10 +8,10 @@ export const Categories = ({ categories }) => {
 
     const { categoryDispatch, hotelCategory } = useCategory();
 
-    const categoriesToShow = categories.slice(categoryLimit, categoryLimit > categories.length ? categories.length : categoryLimit + 11);
+    const categoriesToShow = categories.slice(categoryLimit + 11 > categories.length ? categories.length - 11 : categoryLimit, categoryLimit > categories.length ? categories.length : categoryLimit + 11);
 
     const handleShowMoreRightClick = () => {
-        setCategoryLimit(prev => prev + 11);
+        setCategoryLimit(prev => prev + 11);   
     }
 
     const handleShowMoreLeftClick = () => {
@@ -26,10 +26,10 @@ export const Categories = ({ categories }) => {
     }
 
     return (
-                <section className="categories d-flex align-center justify-center gap-large cursor-pointer">
+                <section className="categories d-flex align-center gap-large cursor-pointer">
                     {
                         categoryLimit >= 11 ? (
-                            <button className="button cursor" onClick={handleShowMoreLeftClick}>
+                            <button className="button btn-category btn-left cursor d-flex align-center justify-center absolute" onClick={handleShowMoreLeftClick}>
                                 <span class="material-icons-outlined">
                                     chevron_left
                                 </span>
@@ -41,7 +41,7 @@ export const Categories = ({ categories }) => {
                     }
                     {
                         categoryLimit + 11 < categories.length ? (
-                            <button className="button cursor" onClick={handleShowMoreRightClick}>
+                            <button className="button btn-category btn-right cursor d-flex align-center justify-center absolute" onClick={handleShowMoreRightClick}>
                                 <span className="material-icons-outlined">
                                     chevron_right
                                 </span>
