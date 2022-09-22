@@ -5,10 +5,17 @@ import { useCategory } from "../../context/category-context";
 export const DateSelector = ({placeholder, checkType}) => {
 
     const { checkInDate, checkOutDate,  categoryDispatch} = useCategory();
+
     const handleDateChange = (date) => {
         categoryDispatch({
             type: checkType === "in" ? "CHECK_IN" : "CHECK_OUT",
             payload: date
+        })
+    }
+
+    const handleDateFocus = () => {
+        categoryDispatch({
+            type: "DATE_FOCUS"
         })
     }
 
@@ -21,6 +28,7 @@ export const DateSelector = ({placeholder, checkType}) => {
             placeholderText={placeholder}
             closeOnScroll={true}
             minDate={new Date()}
+            onFocus={handleDateFocus}
         />
     )
 }

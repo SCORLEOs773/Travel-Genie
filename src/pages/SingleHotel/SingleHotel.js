@@ -1,22 +1,40 @@
-import { Fragment } from "react";
+import { Fragment, useCallback, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { hotels } from "../../db/hotels";
-import { useCategory } from "../../context/category-context";
+import { useCategory, useAuth } from "../../context";
+import { AuthModal } from "../../components";
 
 import { Navbar, FinalPrice, HostAndHotelDetails, HotelImages } from "../../components";
 import "./SingleHotel.css";
 
 export const SingleHotel = () => {
 
+    const { isAuthModalOpen } = useAuth();
+
     const { hotelId } = useParams();
-    const { hotelCategory } = useCategory();
+    const { hotelCategory, categoryDispatch, isDestinationModalOpen } = useCategory();
+
+    const handleScroll = useCallback(
+        () => {
+            if (window.scrollY > 30 && !isDestinationModalOpen){
+                categoryDispatch({
+                    type: "CHANGE_DESTINATION_MODAL_STATUS"
+                })
+            }
+        }, [isDestinationModalOpen]
+    )
+
+    useEffect(() => {   
+        window.addEventListener("scroll", handleScroll);
+        return () => 
+           window.removeEventListener("scroll", handleScroll); 
+      }, [])
    
     const singleHotel = hotels.categories[hotelCategory].find(hotel => hotel.id === hotelId);
-    console.log({singleHotel});
 
     return (
         <Fragment>
-            <Navbar />
+            <Navbar route="single-hotel"/>
             <main className="main">
                 <HotelImages singleHotel={singleHotel} />
                 <div className="d-flex ">
@@ -24,6 +42,10 @@ export const SingleHotel = () => {
                     <FinalPrice singleHotel={singleHotel} />
                 </div>
             </main>
+            {
+                isAuthModalOpen &&
+                    <AuthModal />
+            }
         </Fragment>
     )
 }

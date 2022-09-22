@@ -37,3 +37,7 @@
 .final-price:last-child {
   border-top: 1px solid var(--container-border-color);
 }
+
+.selected-dates .search-dest {
+  background-color: transparent;
+}

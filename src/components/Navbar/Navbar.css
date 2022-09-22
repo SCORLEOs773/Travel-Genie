@@ -22,7 +22,7 @@
 }
 
 .form-option {
-    font-size: 1rem;
+    font-size: .875rem;
     padding: 8px;
     color: var(--text-color-primary);
 }
@@ -30,10 +30,6 @@
 .border-right-1px {
     border-right: 1px solid var(--accent-color);
     height: 70%;
-}
-
-.add-guest {
-    color: var(--accent-color);
 }
 
 .search {
@@ -66,4 +62,12 @@
 .person {
     background-color: var(--accent-color);
     border-radius: 0 4px 4px 0;
+}
+
+.gap-96px {
+    gap: 6rem;
+}
+
+.opacity-50 {
+    opacity: .5;
 }

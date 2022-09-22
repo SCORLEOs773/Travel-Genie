@@ -1,8 +1,15 @@
 import "./FinalPrice.css";
+import { DateSelector } from "../DateSelector/DateSelector";
+import { useCategory } from "../../context/category-context";
 
-export const FinalPrice = ({singleHotel}) => {
+export const FinalPrice = ({ singleHotel }) => {
 
-    const { price, rating, numberOfguest } = singleHotel;
+    const { price, rating } = singleHotel;
+
+    const { noOfGuests, checkInDate, checkOutDate } = useCategory();
+
+    
+    const numberOfNights = checkInDate && checkOutDate ? (checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 3600 * 24) : 0;
 
     return (
         <div className="price-details-container shadow d-flex direction-column gap">
@@ -16,20 +23,20 @@ export const FinalPrice = ({singleHotel}) => {
                 </span>
             </div>
             <div className="d-flex direction-column">
-                <div class="grid-container-two-col">
-                    <div class="date d-flex direction-column align-center">
-                        <p className="span">CHECK-IN</p>
-                        <span className="span">20/10/2022</span>
+                <div class="grid-container-two-col selected-dates">
+                    <div className="checkin loc-container">
+                        <label className="label">Check in</label>
+                        <DateSelector placeholder="Add dates" checkType="in" />
                     </div>
-                    <div class="date d-flex direction-column align-center">
-                        <p className="span">CHECK-OUT</p>
-                        <span className="span">20/10/2022</span>
+                    <div className="checkout loc-container">
+                        <label className="label">Check out</label>
+                        <DateSelector placeholder="Add dates" checkType="out" />
                     </div>
                 </div>
                 <div>
                     <div className="date gutter-sm">
                         <p className="span">GUESTS</p>
-                        <span className="span">{numberOfguest} guests</span>
+                        <span className="span">{noOfGuests} guests</span>
                     </div>
                 </div>
             </div>
@@ -38,8 +45,8 @@ export const FinalPrice = ({singleHotel}) => {
             </div>
             <div className="price-distribution d-flex direction-column">
                 <div className="final-price d-flex align-center justify-space-between">
-                    <span className="span">Rs. {price} x 2 nights</span>
-                    <span className="span">Rs. 5xxx</span>
+                    <span className="span">Rs. {price} x {numberOfNights} nights</span>
+                    <span className="span">Rs. {price * numberOfNights}</span>
                 </div>
                 <div className="final-price d-flex align-center justify-space-between">
                     <span className="span">Service fee</span>
@@ -47,7 +54,7 @@ export const FinalPrice = ({singleHotel}) => {
                 </div>
                 <div className="final-price d-flex align-center justify-space-between">
                     <span className="span">Total</span>
-                    <span className="span">Rs. 5xxx</span>
+                    <span className="span">Rs. {price * numberOfNights + 150}</span>
                 </div>
             </div>
         </div>
