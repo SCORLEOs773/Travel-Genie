@@ -9,3 +9,4 @@ export { HotelImages } from "./HotelImages/HotelImages";
 export { AuthSignup } from "./Auth/AuthSignup";
 export { AuthLogin } from "./Auth/AuthLogin";
 export { AuthModal } from "./Modal/AuthModal";
+export { Filter } from "./Filters/Filter";

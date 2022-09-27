@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Home, SingleHotel, SearchResult } from "./pages"
+import { Home, SingleHotel, SearchResult } from "./pages";
 import './App.css';
 
 function App() {

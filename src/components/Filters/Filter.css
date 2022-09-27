@@ -1,0 +1,98 @@
+.filter-modal {
+  position: fixed;
+  top: 0;
+  z-index: 8;
+  width: 100%;
+  height: 100%;
+  background-color: var(--overlay);
+  overflow: hidden;
+  padding-bottom: 5rem;
+}
+
+.filter-page {
+  background-color: var(--background-color);
+  width: max-content;
+  height: 100%;
+  padding: 2rem 3rem;
+  margin: 3rem 0;
+  transform: translate(70%, 0);
+  overflow: auto;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.filter-container {
+  padding: 1rem 0;
+}
+
+.filter-label {
+  display: inline-block;
+  font-size: 1.875rem;
+  opacity: 0.5;
+  padding: 8px 0;
+}
+
+.pricerange {
+  width: 90%;
+  color: var(--primary-color);
+  color: black;
+}
+
+.span-label {
+  font-size: 1.25rem;
+}
+
+.span-label.room-count {
+  display: inline-flex;
+  border: 1px solid var(--text-color-primary);
+  color: var(--accent-color);
+  border-radius: 4px;
+  margin-right: 1rem;
+  width: 2.875rem;
+  height: 2rem;
+}
+
+.on-hover:hover,
+.selected {
+  color: var(--background-color);
+  background-color: var(--text-color-primary);
+}
+
+.rating-selected {
+  color: #fdba74;
+}
+
+.beds {
+  margin-right: 58px;
+}
+
+.property-type {
+  display: inline-flex;
+  border: 1px solid var(--text-color-primary);
+  color: var(--accent-color);
+  border-radius: 4px;
+  word-break: break-all;
+  padding: 1rem;
+  width: 7rem;
+  height: 6rem;
+}
+
+.star.cursor-pointer {
+  height: 3rem;
+  width: 5rem;
+}
+
+.button.btn-link-primary {
+  font-size: 1.5rem;
+  border-radius: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--text-color-primary);
+}
+
+.btn-apply {
+  font-size: 1.5rem;
+  font-weight: normal;
+  padding: 8px 1.5rem;
+}

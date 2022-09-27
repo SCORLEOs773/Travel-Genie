@@ -9,7 +9,6 @@ export const Navbar = ({route}) => {
     const { authDispatch } = useAuth();
 
     const { categoryDispatch, isDestinationModalOpen, destination, checkInDate, checkOutDate, noOfGuests } = useCategory();
-    console.log("from navbar -", {isDestinationModalOpen})
 
     const handleDestinationAndDateClick = () => {
         categoryDispatch({
