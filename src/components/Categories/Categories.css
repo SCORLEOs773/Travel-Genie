@@ -29,8 +29,17 @@
 
 .btn-right {
   top: 6rem;
-  right: 4rem;
+  right: 10rem;
   border: 1px solid var(--accent-color);
   border-radius: 50%;
   color: var(--text-color-primary);
+}
+
+.button.btn-filter {
+  top: 5.5rem;
+  right: 2rem;
+  padding: 8px 1rem;
+  border-radius: 2rem;
+  border: 1px solid var(--accent-color);
+  font-size: 1rem;
 }

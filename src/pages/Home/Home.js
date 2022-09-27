@@ -1,7 +1,8 @@
-import { Navbar, Categories, TravelCard, AuthModal } from "../../components";
+import { Navbar, Categories, TravelCard, AuthModal, Filter } from "../../components";
 import { categories, hotels } from "../../db/";
 import { Fragment, useCallback, useEffect } from "react";
-import { useCategory, useAuth } from "../../context";
+import { useCategory, useAuth, useFilter } from "../../context";
+import { getHotelsByCancellation, getHotelsByPrice, getHotelsByPropertyType, getHotelsByRating, getHotelsByRoomsAndBeds} from "../../utilities";
 import "./Home.css";
 
 export const Home = () => {
@@ -9,6 +10,8 @@ export const Home = () => {
     const { isAuthModalOpen } = useAuth();
 
     const { hotelCategory, categoryDispatch, isDestinationModalOpen } = useCategory();
+
+    const { isFilterModalOpen, noOfBathrooms, noOfBedrooms, noOfBeds, propertyType, priceRange, traveloRating, isCancelable } = useFilter();
 
     const handleScroll = useCallback(() => {
         if (window.scrollY > 30 && !isDestinationModalOpen) {
@@ -24,7 +27,11 @@ export const Home = () => {
             window.removeEventListener("scroll", handleScroll);
     }, [])
 
-
+    const filteredHotelsByPrice = getHotelsByPrice(hotels.categories[hotelCategory], priceRange);
+    const filteredHotelsByRoomsAndBeds = getHotelsByRoomsAndBeds(filteredHotelsByPrice, noOfBathrooms, noOfBedrooms, noOfBeds,)
+    const filteredHotelsByPropertyType = getHotelsByPropertyType(filteredHotelsByRoomsAndBeds   , propertyType);
+    const filteredHotelsByRatings = getHotelsByRating(filteredHotelsByPropertyType, traveloRating);
+    const filteredHotelsByCancellation = getHotelsByCancellation(filteredHotelsByRatings, isCancelable);
 
     return (
         <Fragment>
@@ -33,13 +40,16 @@ export const Home = () => {
                 <Categories categories={categories} />
                 <section className="hotels d-flex align-center wrap gap-xxl">
                     {
-                        hotels.categories[hotelCategory]?.map(hotel => <TravelCard key={hotel.id} hotel={hotel} />)
+                        filteredHotelsByCancellation && filteredHotelsByCancellation.map(hotel => <TravelCard key={hotel.id} hotel={hotel} />)
                     }
                 </section>
             </div>
             {
                 isAuthModalOpen &&
                     <AuthModal />
+            }
+            {
+                isFilterModalOpen && <Filter />
             }
         </Fragment>
 
