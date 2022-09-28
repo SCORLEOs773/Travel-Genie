@@ -5,6 +5,21 @@ export const authReducer = (state, {type, payload}) => {
                 ...state,
                 isAuthModalOpen: !state.isAuthModalOpen
             }
+        case "MOBILE_NUMBER":
+            return {
+                ...state,
+                number: payload
+            }
+        case "PASSWORD":
+            return {
+                ...state,
+                password: payload
+            }
+        case "SHOW_DROP_DOWN_OPTIONS":
+            return {
+                ...state,
+                isDropDownModalOpen: !state.isDropDownModalOpen
+            }
         default:
             return state
     }

@@ -6,7 +6,7 @@ const initalState = {
     isDestinationModalOpen: false,
     checkInDate: null,
     checkOutDate: null,
-    noOfGuests: "",
+    noOfGuests: 0,
     destination: "",
     isSearchResultOpen: true
 }

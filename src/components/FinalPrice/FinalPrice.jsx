@@ -6,10 +6,20 @@ export const FinalPrice = ({ singleHotel }) => {
 
     const { price, rating } = singleHotel;
 
-    const { noOfGuests, checkInDate, checkOutDate } = useCategory();
+    const { noOfGuests, checkInDate, checkOutDate, categoryDispatch } = useCategory();
 
-    
     const numberOfNights = checkInDate && checkOutDate ? (checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 3600 * 24) : 0;
+
+    const handleReserveClick = () => {
+        console.log("clicked")
+    }
+
+    const handleGuestChange = (e) => {
+        categoryDispatch({
+            type: "GUEST_COUNT",
+            payload: e.target.value
+        })
+    }
 
     return (
         <div className="price-details-container shadow d-flex direction-column gap">
@@ -36,12 +46,19 @@ export const FinalPrice = ({ singleHotel }) => {
                 <div>
                     <div className="date gutter-sm">
                         <p className="span">GUESTS</p>
-                        <span className="span">{noOfGuests} guests</span>
+                        {
+                            noOfGuests <= 0 ? (
+                                <input className="guest-count-input" type="number" placeholder="Add guests" value={noOfGuests} onChange={handleGuestChange}/>
+                            ) : (
+                                <span className="span">{noOfGuests} guests</span>
+                            )
+                        }
+                        
                     </div>
                 </div>
             </div>
             <div>
-                <button className="button btn-primary btn-reserve">Reserve</button>
+                <button className="button btn-primary btn-reserve cursor" disabled={checkInDate && checkOutDate && noOfGuests > 0 ? false : true} onClick={handleReserveClick}>Reserve</button>
             </div>
             <div className="price-distribution d-flex direction-column">
                 <div className="final-price d-flex align-center justify-space-between">

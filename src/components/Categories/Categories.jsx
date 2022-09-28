@@ -37,7 +37,7 @@ export const Categories = ({ categories }) => {
         <section className="categories d-flex align-center gap-large cursor-pointer">
             {
                 categoryLimit >= 10 ? (
-                    <button className="button btn-category btn-left cursor d-flex align-center justify-center absolute" onClick={handleShowMoreLeftClick}>
+                    <button className="button btn-category btn-left cursor-pointer d-flex align-center justify-center absolute" onClick={handleShowMoreLeftClick}>
                         <span class="material-icons-outlined">
                             chevron_left
                         </span>
@@ -49,7 +49,7 @@ export const Categories = ({ categories }) => {
             }
             {
                 categoryLimit + 10 < categories.length ? (
-                    <button className="button btn-category btn-right cursor d-flex align-center justify-center fixed" onClick={handleShowMoreRightClick}>
+                    <button className="button btn-category btn-right cursor-pointer d-flex align-center justify-center fixed" onClick={handleShowMoreRightClick}>
                         <span className="material-icons-outlined">
                             chevron_right
                         </span>
@@ -57,7 +57,7 @@ export const Categories = ({ categories }) => {
                 ) : ""
             }
             <div>
-                <button className="button btn-filter d-flex align-center gap-small fixed cursor" onClick={handleFilterClick}>
+                <button className="button btn-filter d-flex align-center gap-small fixed cursor-pointer" onClick={handleFilterClick}>
                     <span class="material-icons-outlined">
                         filter_alt
                     </span>
