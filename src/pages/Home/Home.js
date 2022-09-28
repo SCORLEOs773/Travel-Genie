@@ -1,4 +1,4 @@
-import { Navbar, Categories, TravelCard, AuthModal, Filter } from "../../components";
+import { Navbar, Categories, TravelCard, AuthModal, Filter, DropDown } from "../../components";
 import { categories, hotels } from "../../db/";
 import { Fragment, useCallback, useEffect } from "react";
 import { useCategory, useAuth, useFilter } from "../../context";
@@ -7,7 +7,7 @@ import "./Home.css";
 
 export const Home = () => {
 
-    const { isAuthModalOpen } = useAuth();
+    const { isAuthModalOpen, isDropDownModalOpen } = useAuth();
 
     const { hotelCategory, categoryDispatch, isDestinationModalOpen } = useCategory();
 
@@ -44,6 +44,9 @@ export const Home = () => {
                     }
                 </section>
             </div>
+            {
+                isDropDownModalOpen && <DropDown />
+            }
             {
                 isAuthModalOpen &&
                     <AuthModal />

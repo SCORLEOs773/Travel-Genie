@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useWishlist } from "../../context";
+import { useWishlist, useAuth } from "../../context";
 import { checkHotelInWishlist } from "../../utilities"
 import "./TravelCard.css";
 
@@ -8,6 +8,8 @@ export const TravelCard = ({ hotel }) => {
     const { id, name, image, address, country, rating, price } = hotel;
 
     const { wishlistDispatch, wishlist } = useWishlist();
+
+    const { token, authDispatch } = useAuth();
 
     const isHotelInWishlist = checkHotelInWishlist(wishlist, id);
 
@@ -18,15 +20,28 @@ export const TravelCard = ({ hotel }) => {
     }
 
     const handleWishlistClick = () => {
-        wishlistDispatch({
-            type: "ADD_TO_WISHLIST",
-            payload: hotel
-        })
+        if (token){
+            if(isHotelInWishlist){
+                wishlistDispatch({
+                    type: "REMOVE_FROM_WISHLIST",
+                    payload: hotel
+                })
+            }else{
+                wishlistDispatch({
+                    type: "ADD_TO_WISHLIST",
+                    payload: hotel
+                })
+            }
+        }else{
+            authDispatch({
+                type: "SHOW_AUTH_MODAL"
+            })
+        }  
     }
 
     return (
         <div className="relative">
-            <div className="travelcard-container shadow cursor-pointer " onClick={handleSelectHotelClick}>
+            <div className="travelcard-container shadow cursor-pointer" onClick={handleSelectHotelClick}>
                 <img className="img" src={image} alt="" />
                 <div className="travelcard-details d-flex align-center">
                     <span className="location">{address}, {country}</span>

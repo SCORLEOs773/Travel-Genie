@@ -43,19 +43,30 @@ export const categoryReducer = (state, { type, payload }) => {
                 ...state,
                 noOfGuests: payload
             }
-        
+
         case "DATE_FOCUS":
             return {
                 ...state,
                 isSearchResultOpen: false
             }
-        
+
         case "SHOW_SEARCH_RESULT":
             return {
                 ...state,
                 isSearchResultOpen: true
             }
-            
+        case "CLEAR_CATEGORY":
+            return {
+                ...state,
+                hotelCategory: "National Parks",
+                isDestinationModalOpen: false,
+                checkInDate: null,
+                checkOutDate: null,
+                noOfGuests: 0,
+                destination: "",
+                isSearchResultOpen: true
+            }
+
         default:
             return state
     }

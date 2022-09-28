@@ -8,6 +8,8 @@ export const Navbar = ({route}) => {
 
     const { authDispatch } = useAuth();
 
+    const token = localStorage.getItem("token");
+
     const { categoryDispatch, isDestinationModalOpen, destination, checkInDate, checkOutDate, noOfGuests } = useCategory();
 
     const handleDestinationAndDateClick = () => {
@@ -17,9 +19,15 @@ export const Navbar = ({route}) => {
     }
 
     const handleNavClick = () => {
-        authDispatch({
-            type: "SHOW_AUTH_MODAL"
-        })
+        if (token){
+            authDispatch({
+                type: "SHOW_DROP_DOWN_OPTIONS"
+            })
+        }else{
+            authDispatch({
+                type: "SHOW_AUTH_MODAL"
+            })
+        }
     }
 
     return (
@@ -28,26 +36,30 @@ export const Navbar = ({route}) => {
                 <a className="link" href="/">TravelO</a>
             </h1>
             {
-                !isDestinationModalOpen && (route === "home" || route === "search") ? (
-                    <div className="form-container shadow d-flex align-center cursor-pointer" onClick={handleDestinationAndDateClick}>
-                        <span className="form-option">{destination || "Anywhere"} </span>
-                        <span className="border-right-1px"></span>
-                        <span className="form-option">{checkInDate && checkOutDate ? `${checkInDate.toLocaleDateString("en-US", { day: "numeric", month: "short"})} - ${checkOutDate.toLocaleDateString("en-US", { day: "numeric", month: "short"})}` : "Any week"} </span>
-                        <span className="border-right-1px"></span>
-                        <span className="form-option add-guest">{noOfGuests > 0 ? `${noOfGuests} guests` : "Add Guests"}</span>
-                        <span className="search material-icons-outlined cursor-pointer">
-                            search
-                        </span>
-                    </div>
-                ) : !isDestinationModalOpen && route === "single-hotel" ? (
-                    <div className="form-container shadow d-flex align-center gap-96px cursor-pointer" onClick={handleDestinationAndDateClick}>
-                        <span className="form-option opacity-50">Start your search</span>
-                        <span className="search material-icons-outlined cursor-pointer">
-                            search  
-                        </span>
-                    </div>
-                ) : (<SearchStayWithDate />)
+                route !== "wishlist" ? (
+                        !isDestinationModalOpen && (route === "home" || route === "search") ? (
+                            <div className="form-container shadow d-flex align-center cursor-pointer" onClick={handleDestinationAndDateClick}>
+                                <span className="form-option">{destination || "Anywhere"} </span>
+                                <span className="border-right-1px"></span>
+                                <span className="form-option">{checkInDate && checkOutDate ? `${checkInDate.toLocaleDateString("en-US", { day: "numeric", month: "short"})} - ${checkOutDate.toLocaleDateString("en-US", { day: "numeric", month: "short"})}` : "Any week"} </span>
+                                <span className="border-right-1px"></span>
+                                <span className="form-option add-guest">{noOfGuests > 0 ? `${noOfGuests} guests` : "Add Guests"}</span>
+                                <span className="search material-icons-outlined cursor-pointer">
+                                    search
+                                </span>
+                            </div>
+                        ) : !isDestinationModalOpen && route === "single-hotel" ? (
+                            <div className="form-container shadow d-flex align-center gap-96px cursor-pointer" onClick={handleDestinationAndDateClick}>
+                                <span className="form-option opacity-50">Start your search</span>
+                                <span className="search material-icons-outlined cursor-pointer">
+                                    search  
+                                </span>
+                            </div>
+                        ) : (<SearchStayWithDate />)
+                    
+                ) : ""
             }
+            
 
             <nav className="nav d-flex align-center cursor-pointer" onClick={handleNavClick}>
                 <span class="material-icons-outlined profile-option menu">

@@ -41,3 +41,17 @@
 .selected-dates .search-dest {
   background-color: transparent;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.guest-count-input {
+  border: none;
+}
+
+.guest-count-input:focus {
+  outline: none;
+}
