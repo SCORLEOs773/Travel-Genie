@@ -1,10 +1,15 @@
 import { useNavigate } from "react-router-dom";
+import { useWishlist } from "../../context";
 import { checkHotelInWishlist } from "../../utilities"
 import "./TravelCard.css";
 
 export const TravelCard = ({ hotel }) => {
 
     const { id, name, image, address, country, rating, price } = hotel;
+
+    const { wishlistDispatch, wishlist } = useWishlist();
+
+    const isHotelInWishlist = checkHotelInWishlist(wishlist, id);
 
     const navigate = useNavigate();
 
@@ -13,7 +18,10 @@ export const TravelCard = ({ hotel }) => {
     }
 
     const handleWishlistClick = () => {
-        console.log("clicked");
+        wishlistDispatch({
+            type: "ADD_TO_WISHLIST",
+            payload: hotel
+        })
     }
 
     return (
@@ -33,8 +41,8 @@ export const TravelCard = ({ hotel }) => {
                 <p className="price-details"><span className="price">₹{price}</span> night</p>
             </div >
             <div className="wishlist">
-                <button className={`button btn-wishlist d-flex align-center justify-center absolute`} onClick={handleWishlistClick}>
-                    <span class="material-icons favorite cursor">
+                <button className="button btn-wishlist d-flex align-center justify-center absolute" onClick={handleWishlistClick}>
+                    <span class={`material-icons favorite cursor ${isHotelInWishlist ? "fav-selected" : ""}`}>
                         favorite
                     </span>
                 </button>
