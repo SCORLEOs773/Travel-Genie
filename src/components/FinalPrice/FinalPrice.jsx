@@ -1,17 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import "./FinalPrice.css";
 import { DateSelector } from "../DateSelector/DateSelector";
 import { useCategory } from "../../context/category-context";
 
 export const FinalPrice = ({ singleHotel }) => {
 
-    const { price, rating } = singleHotel;
+    const navigate = useNavigate();
+
+    const { id, price, rating } = singleHotel;
 
     const { noOfGuests, checkInDate, checkOutDate, categoryDispatch } = useCategory();
 
     const numberOfNights = checkInDate && checkOutDate ? (checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 3600 * 24) : 0;
 
     const handleReserveClick = () => {
-        console.log("clicked")
+        navigate(`/book/stay/${id}`)
     }
 
     const handleGuestChange = (e) => {
