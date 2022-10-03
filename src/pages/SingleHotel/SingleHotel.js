@@ -35,7 +35,7 @@ export const SingleHotel = () => {
     return (
         <Fragment>
             <Navbar route="single-hotel"/>
-            <main className="main">
+            <main className="main-page">
                 <HotelImages singleHotel={singleHotel} />
                 <div className="d-flex ">
                     <HostAndHotelDetails singleHotel={singleHotel} />
