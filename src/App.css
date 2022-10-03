@@ -23,5 +23,6 @@
 
 body {
   overflow-x: hidden;
+  overflow-y: auto;
   background-color: var(--background-color);
 }
