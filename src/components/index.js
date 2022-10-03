@@ -11,3 +11,5 @@ export { AuthLogin } from "./Auth/AuthLogin";
 export { AuthModal } from "./Modal/AuthModal";
 export { Filter } from "./Filters/Filter";
 export { DropDown } from "./DropDown/DropDown";
+export { Loader } from "./Loader/Loader";
+export { LoaderSmall } from "./Loader/LoaderSmall";
