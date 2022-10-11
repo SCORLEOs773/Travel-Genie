@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import "../Filter.css";
@@ -13,8 +12,6 @@ const minDifference = 500;
 export const PriceRange = () => {
 
     const { priceRange, filterDispatch } = useFilter();
-
-    const [value1, setValue1] = useState([200, 15000]);
 
     const handlePriceRangeChange = (event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
