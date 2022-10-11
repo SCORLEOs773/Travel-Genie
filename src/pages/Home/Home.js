@@ -24,14 +24,18 @@ export const Home = () => {
                 type: "CHANGE_DESTINATION_MODAL_STATUS"
             })
         }
-    }, [isDestinationModalOpen])
+    })
 
     useEffect(() => {
         setTestArray(hotels.categories[hotelCategory] ? hotels.categories[hotelCategory].slice(0, 16) : [])
+    }, [])
+
+    useEffect(() => {
+
         window.addEventListener("scroll", handleScroll);
         return () =>
             window.removeEventListener("scroll", handleScroll);
-    }, [hotelCategory])
+    })
 
     const fetchMoreData = () => {
         if (testArray.length >= hotels.categories[hotelCategory].length) {
@@ -65,22 +69,22 @@ export const Home = () => {
                 {
                     testArray && testArray.length > 0 ? (
                         <InfiniteScroll
-                    dataLength={testArray.length}
-                    next={fetchMoreData}
-                    hasMore={hasMore}
-                    loader={testArray.length > 0 && <h3 style={{ textAlign: 'center', margin: "2rem 0" }}>Loading...............</h3>}
-                    endMessage={
-                        <p style={{ textAlign: 'center', margin: "2rem 0" }}>
-                            <b>Yay! You have seen it all</b>
-                        </p>
-                    }
-                >
-                    <section className="hotels d-flex align-center wrap gap-xxl">
-                        {
-                            filteredHotelsByCancellation && filteredHotelsByCancellation.map(hotel => <TravelCard key={hotel.id} hotel={hotel} />)
-                        }
-                    </section>
-                </InfiniteScroll>
+                            dataLength={testArray.length}
+                            next={fetchMoreData}
+                            hasMore={hasMore}
+                            loader={testArray.length > 0 && <h3 style={{ textAlign: 'center', margin: "2rem 0" }}>Loading...............</h3>}
+                            endMessage={
+                                <p style={{ textAlign: 'center', margin: "2rem 0" }}>
+                                    <b>Yay! You have seen it all</b>
+                                </p>
+                            }
+                        >
+                            <section className="hotels d-flex align-center wrap gap-xxl">
+                                {
+                                    filteredHotelsByCancellation && filteredHotelsByCancellation.map(hotel => <TravelCard key={hotel.id} hotel={hotel} />)
+                                }
+                            </section>
+                        </InfiniteScroll>
                     ) : (
                         <h2>Nothing found</h2>
                     )
