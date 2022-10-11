@@ -18,17 +18,17 @@ export const Home = () => {
 
     const { isFilterModalOpen, noOfBathrooms, noOfBedrooms, noOfBeds, propertyType, priceRange, traveloRating, isCancelable } = useFilter();
 
-    const handleScroll = useCallback(() => {
+    const handleScroll = () => {
         if (window.scrollY > 30 && !isDestinationModalOpen) {
             categoryDispatch({
                 type: "CHANGE_DESTINATION_MODAL_STATUS"
             })
         }
-    })
+    }
 
     useEffect(() => {
         setTestArray(hotels.categories[hotelCategory] ? hotels.categories[hotelCategory].slice(0, 16) : [])
-    }, [])
+    }, [hotelCategory])
 
     useEffect(() => {
 

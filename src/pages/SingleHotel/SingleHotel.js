@@ -14,27 +14,26 @@ export const SingleHotel = () => {
     const { hotelId } = useParams();
     const { hotelCategory, categoryDispatch, isDestinationModalOpen } = useCategory();
 
-    const handleScroll = useCallback(
-        () => {
-            if (window.scrollY > 30 && !isDestinationModalOpen){
-                categoryDispatch({
-                    type: "CHANGE_DESTINATION_MODAL_STATUS"
-                })
-            }
+    const handleScroll = () => {
+        if (window.scrollY > 30 && !isDestinationModalOpen) {
+            categoryDispatch({
+                type: "CHANGE_DESTINATION_MODAL_STATUS"
+            })
         }
-    )
+    }
 
-    useEffect(() => {   
+
+    useEffect(() => {
         window.addEventListener("scroll", handleScroll);
-        return () => 
-           window.removeEventListener("scroll", handleScroll); 
-      })
-   
+        return () =>
+            window.removeEventListener("scroll", handleScroll);
+    })
+
     const singleHotel = hotels.categories[hotelCategory].find(hotel => hotel.id === hotelId);
 
     return (
         <Fragment>
-            <Navbar route="single-hotel"/>
+            <Navbar route="single-hotel" />
             <main className="main-page">
                 <HotelImages singleHotel={singleHotel} />
                 <div className="d-flex ">
@@ -47,7 +46,7 @@ export const SingleHotel = () => {
             }
             {
                 isAuthModalOpen &&
-                    <AuthModal />
+                <AuthModal />
             }
         </Fragment>
     )
