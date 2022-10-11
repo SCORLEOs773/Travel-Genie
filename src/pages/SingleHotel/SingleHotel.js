@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { hotels } from "../../db/hotels";
 import { useCategory, useAuth } from "../../context";

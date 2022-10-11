@@ -1,7 +1,7 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Navbar, Categories, TravelCard, AuthModal, Filter, DropDown } from "../../components";
 import { categories, hotels } from "../../db/";
-import { Fragment, useCallback, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useCategory, useAuth, useFilter } from "../../context";
 import { getHotelsByCancellation, getHotelsByPrice, getHotelsByPropertyType, getHotelsByRating, getHotelsByRoomsAndBeds } from "../../utilities";
 import "./Home.css";
