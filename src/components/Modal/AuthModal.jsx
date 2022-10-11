@@ -1,5 +1,5 @@
 import "./AuthModal.css";
-import { Fragment, useState } from "react"
+import { useState } from "react"
 import { AuthLogin, AuthSignup } from "../index";
 import { useAuth } from "../../context";
 
