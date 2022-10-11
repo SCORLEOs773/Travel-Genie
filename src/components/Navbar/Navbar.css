@@ -54,6 +54,11 @@
     box-shadow: 2px 2px 5px 4px rgba(0, 0, 0, .1);
 }
 
+.name {
+    color: var(--text-color-primary);
+    font-size: 1rem;
+}
+
 .profile-option {
     color: var(--text-color-primary);
     font-size: 2.5rem;
