@@ -9,7 +9,7 @@ import "./Home.css";
 export const Home = () => {
 
     const [hasMore, setHasMore] = useState(true);
-    const [tetsArray, setTestArray] = useState([]);
+    const [testArray, setTestArray] = useState([]);
     let [currentIndex, setCurrentIndex] = useState(16);
 
     const { isAuthModalOpen, isDropDownModalOpen } = useAuth();
@@ -27,26 +27,31 @@ export const Home = () => {
     }, [isDestinationModalOpen])
 
     useEffect(() => {
-        setTestArray(hotels.categories[hotelCategory].slice(0, 16))
+        setTestArray(hotels.categories[hotelCategory] ? hotels.categories[hotelCategory].slice(0, 16) : [])
         window.addEventListener("scroll", handleScroll);
         return () =>
             window.removeEventListener("scroll", handleScroll);
-    }, [])
+    }, [hotelCategory])
 
     const fetchMoreData = () => {
-        if (tetsArray.length >= 33) {
+        if (testArray.length >= hotels.categories[hotelCategory].length) {
             setHasMore(false);
             return;
         }
         setTimeout(() => {
-            setTestArray(tetsArray.concat(hotels.categories[hotelCategory].slice(currentIndex, currentIndex + 16)));
-            setCurrentIndex(currentIndex += 16);
+            if (hotels.categories[hotelCategory] && hotels.categories[hotelCategory].length > 0) {
+                setTestArray(testArray.concat(hotels.categories[hotelCategory].slice(currentIndex, currentIndex + 16)));
+                setCurrentIndex(currentIndex += 16);
+            } else {
+                setTestArray([])
+            }
         }, 1000);
     };
 
-    console.log("Test Array", tetsArray);
+    console.log("Hotel Category", hotelCategory);
+    console.log("Test Array", testArray);
 
-    const filteredHotelsByPrice = getHotelsByPrice(tetsArray, priceRange);
+    const filteredHotelsByPrice = getHotelsByPrice(testArray, priceRange);
     const filteredHotelsByRoomsAndBeds = getHotelsByRoomsAndBeds(filteredHotelsByPrice, noOfBathrooms, noOfBedrooms, noOfBeds,)
     const filteredHotelsByPropertyType = getHotelsByPropertyType(filteredHotelsByRoomsAndBeds, propertyType);
     const filteredHotelsByRatings = getHotelsByRating(filteredHotelsByPropertyType, traveloRating);
@@ -57,11 +62,13 @@ export const Home = () => {
             <div className="home-container">
                 <Navbar route="home" />
                 <Categories categories={categories} />
-                <InfiniteScroll
-                    dataLength={tetsArray.length}
+                {
+                    testArray && testArray.length > 0 ? (
+                        <InfiniteScroll
+                    dataLength={testArray.length}
                     next={fetchMoreData}
                     hasMore={hasMore}
-                    loader={<h3 style={{ textAlign: 'center', margin: "2rem 0" }}>Loading...............</h3>}
+                    loader={testArray.length > 0 && <h3 style={{ textAlign: 'center', margin: "2rem 0" }}>Loading...............</h3>}
                     endMessage={
                         <p style={{ textAlign: 'center', margin: "2rem 0" }}>
                             <b>Yay! You have seen it all</b>
@@ -74,6 +81,10 @@ export const Home = () => {
                         }
                     </section>
                 </InfiniteScroll>
+                    ) : (
+                        <h2>Nothing found</h2>
+                    )
+                }
 
             </div>
             {
@@ -87,6 +98,5 @@ export const Home = () => {
                 isFilterModalOpen && <Filter />
             }
         </Fragment>
-
     )
 }
