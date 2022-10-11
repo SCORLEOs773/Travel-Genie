@@ -18,7 +18,7 @@ export const ConfirmBooking = () => {
     const filteredHotel = hotels.categories[hotelCategory].filter(hotel => hotel.id === stayId);
     const [confirmedHotel] = filteredHotel;
 
-    const { image, name, address, city, state, country, rating, price } = confirmedHotel;
+    const { image, name, address, state, rating, price } = confirmedHotel;
 
     const totalPayableAmount = price * numberOfNights + 150;
 
@@ -97,7 +97,7 @@ export const ConfirmBooking = () => {
                 </div>
                 <div className="d-flex direction-column gap-large final-details">
                     <div className="d-flex gap-small">
-                        <img className="image" src={image} />
+                        <img className="image" src={image} alt={name}/>
                         <div className="d-flex direction-column">
                             <div className="d-flex direction-column grow-shrink-basis">
                                 <span>{name}</span>

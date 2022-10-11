@@ -22,7 +22,7 @@ export const Order = () => {
 
     return (
         <div className="order-container d-flex direction-column align-center justify-center gap ">
-            <img className="image" src={check} />
+            <img className="image" src={check} alt="success"/>
             <span className="heading-2">Stay Booked Successfully</span>
             <button className="button btn-primary cursor" onClick={handleConitnueShoppingClick}>Continue Booking</button>
         </div>
