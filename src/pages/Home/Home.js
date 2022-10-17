@@ -26,9 +26,11 @@ export const Home = () => {
         }
     }
 
+    const hotelsToShow = hotels.data.filter(hotel => hotel.category === hotelCategory);
+
     useEffect(() => {
-        setTestArray(hotels.categories[hotelCategory] ? hotels.categories[hotelCategory].slice(0, 16) : [])
-    }, [hotelCategory])
+        setTestArray(hotelsToShow ? hotelsToShow.slice(0, 16) : [])
+    }, [])
 
     useEffect(() => {
 
@@ -38,13 +40,13 @@ export const Home = () => {
     })
 
     const fetchMoreData = () => {
-        if (testArray.length >= hotels.categories[hotelCategory].length) {
+        if (testArray.length >= hotelsToShow.length) {
             setHasMore(false);
             return;
         }
         setTimeout(() => {
-            if (hotels.categories[hotelCategory] && hotels.categories[hotelCategory].length > 0) {
-                setTestArray(testArray.concat(hotels.categories[hotelCategory].slice(currentIndex, currentIndex + 16)));
+            if (hotelsToShow && hotelsToShow.length > 0) {
+                setTestArray(testArray.concat(hotelsToShow.slice(currentIndex, currentIndex + 16)));
                 setCurrentIndex(currentIndex += 16);
             } else {
                 setTestArray([])
