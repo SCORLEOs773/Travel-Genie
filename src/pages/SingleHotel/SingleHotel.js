@@ -12,7 +12,7 @@ export const SingleHotel = () => {
     const { isAuthModalOpen, isDropDownModalOpen } = useAuth();
 
     const { hotelId } = useParams();
-    const { hotelCategory, categoryDispatch, isDestinationModalOpen } = useCategory();
+    const { categoryDispatch, isDestinationModalOpen } = useCategory();
 
     const handleScroll = () => {
         if (window.scrollY > 30 && !isDestinationModalOpen) {
@@ -29,7 +29,7 @@ export const SingleHotel = () => {
             window.removeEventListener("scroll", handleScroll);
     })
 
-    const singleHotel = hotels.categories[hotelCategory].find(hotel => hotel.id === hotelId);
+    const singleHotel = hotels.data.find(hotel => hotel.id === hotelId);
 
     return (
         <Fragment>
