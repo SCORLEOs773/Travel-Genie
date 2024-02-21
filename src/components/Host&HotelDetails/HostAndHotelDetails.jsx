@@ -1,6 +1,6 @@
 import "./HostAndHotelDetails.css";
 
-export const HostAndHotelDetails = ({singleHotel}) => {
+export const HostAndHotelDetails = ({ singleHotel }) => {
 
     const { numberOfBathrooms, numberOfBeds, numberOfguest } = singleHotel;
 
@@ -8,7 +8,7 @@ export const HostAndHotelDetails = ({singleHotel}) => {
         <div className="hotel-details-container">
             <div className="host-details">
                 <p className="host-name p">
-                    Hosted by Daleep
+                    Hosted by Sukhad Sharma
                 </p>
                 <span className="span">{numberOfguest} guests. 1 bedroom. {numberOfBeds} bed. {numberOfBathrooms} bathroom. </span>
             </div>

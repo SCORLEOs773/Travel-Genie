@@ -31,10 +31,11 @@ export const Navbar = ({ route }) => {
     }
 
     return (
-        <header className="heading d-flex align-center gutter-0">
-            <h1 className="heading-1">
-                <a className="link" href="/">TravelO</a>
-            </h1>
+        <header className="heading d-flex justify-space-between align-center gutter-0">
+            {/* <a className="link" href="/"><img src="./Travel Genie Logo Trans.png" height={"100px"} widht={"100px"} alt="" /></a> */}
+            <h2>
+                <a className="link text-danger" href="/">Travel genie</a>
+            </h2>
             {
                 route !== "wishlist" ? (
                     !isDestinationModalOpen && (route === "home" || route === "search") ? (
@@ -62,7 +63,7 @@ export const Navbar = ({ route }) => {
 
 
             <nav className="d-flex align-center gap-large" onClick={handleNavClick}>
-                <span className="name">Hi, Prakash</span>
+                <span className="name">Hi, Sukhad</span>
                 <div className="nav d-flex align-center cursor-pointer">
                     <span class="material-icons-outlined profile-option menu">
                         menu
